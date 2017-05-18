@@ -8,7 +8,7 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-require('./../src/index.css');
+require('./index.css');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
@@ -39,23 +39,24 @@ var Carousel = function (_React$Component) {
                 var swiper = this.refs.swiper;
                 var Imgs = swiper.querySelectorAll('img');
                 var count = 1;
-                var valForTransformY = this.getTransformY(Imgs[0]);
 
-                setInterval(function () {
+                if (Imgs.length > 1) {
+                    setInterval(function () {
 
-                    Imgs.forEach(function (img) {
-                        if (count > 3) {
-                            img.style.transform = 'translateY(' + 0 + 'px)';
-                        } else {
-                            var _valForTransformY = _this2.getTransformY(img);
-                            img.style.transform = 'translateY(' + (_valForTransformY - 100) + 'px)';
+                        Imgs.forEach(function (img) {
+                            if (count > Imgs.length - 1) {
+                                img.style.transform = 'translateY(' + 0 + 'px)';
+                            } else {
+                                var valForTransformY = _this2.getTransformY(img);
+                                img.style.transform = 'translateY(' + (valForTransformY - 100) + 'px)';
+                            }
+                        });
+                        if (count > Imgs.length - 1) {
+                            count = 0;
                         }
-                    });
-                    if (count > 3) {
-                        count = 0;
-                    }
-                    count++;
-                }, 3000);
+                        count++;
+                    }, 3000);
+                }
             }
 
             return componentDidMount;
@@ -84,13 +85,8 @@ var Carousel = function (_React$Component) {
             function render() {
                 return _react2['default'].createElement(
                     'div',
-                    { className: ['swiperImg'], ref: 'swiper' },
-                    this.props.srcs.map(function (src, index) {
-                        if (index === 0) {
-                            return _react2['default'].createElement('img', { className: ['firstImg'], src: require('' + String(src)), key: index, alt: index });
-                        }
-                        return _react2['default'].createElement('img', { src: require('' + String(src)), key: index, alt: index });
-                    })
+                    { id: 'div1', ref: 'swiper', style: this.props.setStyle },
+                    this.props.children
                 );
             }
 

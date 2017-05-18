@@ -2,17 +2,22 @@
  * Created by xingxiao05 on 17/5/17.
  */
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
 
 module.exports = {
     entry: {
-        main: './src/index.js',
+        main: './test/App.js',
         vendor: ['react','react-dom']
     },
 
     output: {
-        filename: '[name].[chunkhash].js',
+        filename: '[name].[hash].js',
         path: path.join(__dirname + '/dist'),
-        publicPath: "/assert"
+        publicPath: "/"
+    },
+    resolve: {
+        extensions: ['.js', '.jsx']
     },
 
     module: {
@@ -24,7 +29,7 @@ module.exports = {
             },
             {
                 test: /\.css$/,
-                use: [ 'style-loader', 'css-loader?modules', ],
+                use: [ 'style-loader', 'css-loader', ],
             },
             {
                 test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/,
@@ -35,6 +40,12 @@ module.exports = {
                 }
             }
         ],
-    }
+    },
+
+    plugins: [
+        new HtmlWebpackPlugin({
+            template: path.resolve(__dirname + '/test/test.html')
+        })
+    ]
 
 }
