@@ -1,8 +1,8 @@
 {
   "name": "react-public-carousel",
-  "version": "1.0.0",
+  "version": "1.0.5",
   "description": "About react's plugin, this is a carousel plugin",
-  "main": "index.js",
+  "main": "./lib/index.js",
   "scripts": {
     "test": "mocha --compilers js:babel-core/register --recursive test/*.js",
     "build": "webpack"

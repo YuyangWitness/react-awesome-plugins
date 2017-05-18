@@ -2,7 +2,7 @@
  * Created by xingxiao05 on 17/5/17.
  */
 import React from 'react'
-import './index.css'
+import './../src/index.css'
 
 
 class Carousel extends React.Component {
